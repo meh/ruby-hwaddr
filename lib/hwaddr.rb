@@ -67,4 +67,8 @@ class HWAddr
 	def to_s
 		@string
 	end
+
+	def inspect
+		"#<HWAddr: #{to_s}>"
+	end
 end
