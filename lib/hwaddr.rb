@@ -40,6 +40,8 @@ class HWAddr
 		unless HWAddr.valid?(@string)
 			raise ArgumentError, "#{value} isn't an usable MAC address"
 		end
+		
+		@string.downcase!
 	end
 
 	def =~ (other)
@@ -52,6 +54,10 @@ class HWAddr
 
 	def group?
 		to_s.length == 8
+	end
+
+	def broadcast?
+		to_s == 'ff:ff:ff:ff:ff:ff'
 	end
 
 	def productor
