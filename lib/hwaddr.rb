@@ -16,9 +16,24 @@ class HWAddr
 	end
 
 	def initialize (value)
-		@string = value.is_a?(Integer) ?
-			[value].pack('q').bytes.map { |b| "%02x" % b }.join(':') :
+		@string = if value.is_a?(Array)
+			if value.length > 6
+				raise ArgumentError, "#{value.inspect} is too big for a MAC address"
+			end
+
+			value.map { |b| "%02x" % b }.join(':')
+		elsif value.is_a?(Integer)
+			array = []
+
+			6.times {
+				array << value & 0xff
+				value >>= 8
+			}
+
+			array.map { |b| "%02x" % b }.join(':')
+		else
 			value.to_s
+		end
 
 		@string.tr! '-', ':'
 
