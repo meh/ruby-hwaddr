@@ -15,7 +15,7 @@ until io.eof?
 	buf = ''
 	buf += io.readline while !io.eof? and buf !~ /\n{2}$/
 
-	if buf =~ /^([0-9a-fA-F]{2})-([0-9a-fA-F]{2})-([0-9a-fA-F]{2})\s+\(hex\)\s+(.+?)\n\1\2\3\s+\(base 16\)\s+\4\n(.*)$/m
+	if buf =~ /^(\h\h)-(\h\h)-(\h\h)\s+\(hex\)\s+(.+?)\n\1\2\3\s+\(base 16\)\s+\4\n(.*)$/m
 		cid, org, addr = "#$1:#$2:#$3", $4, $5.split(/\n/).map(&:strip).join("\n")
 
 		puts "HWAddr::Database.add(#{org.inspect}, #{cid.inspect}, #{addr.inspect})"

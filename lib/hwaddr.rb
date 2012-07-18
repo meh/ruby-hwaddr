@@ -12,7 +12,7 @@ class HWAddr
 	autoload :Database, 'hwaddr/database'
 
 	def self.valid? (text)
-		text =~ /^\w\w:\w\w:\w\w(?::\w\w:\w\w:\w\w)?$/
+		text =~ /^\h\h:\h\h:\h\h(?::\h\h:\h\h:\h\h)?$/
 	end
 
 	def initialize (value)
