@@ -44,6 +44,16 @@ class HWAddr
 		@string.downcase!
 	end
 
+	def hash
+		to_s.hash
+	end
+
+	def == (other)
+		to_s == other.to_s
+	end
+
+	alias eql? ==
+
 	def =~ (other)
 		if group?
 			to_s == other.to_s[0, 8]
